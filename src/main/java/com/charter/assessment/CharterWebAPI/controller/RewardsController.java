@@ -41,14 +41,13 @@ public class RewardsController {
 	 * @return
 	 */
 	@GetMapping(value = "/rewards/{customerId}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RewardsModel> getRewardsByCustomerId(@PathVariable("customerId") Long customerId){
+	public ResponseEntity getRewardsByCustomerId(@PathVariable("customerId") Long customerId){
 
 		try {
 		    RewardsModel customerRewards = rewardsService.getRewardsByCustomerId(customerId);
 			return new ResponseEntity<>(customerRewards, HttpStatus.OK);
 		}catch(CustomerDoNotExistsException cust) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-			
+			return new ResponseEntity<>(cust.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch(Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -56,7 +55,7 @@ public class RewardsController {
 	}
 	
 	@GetMapping(value = "/transactions",produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<TransactionModel>> getTransactions(){
+	public ResponseEntity getTransactions(){
 
 		try {
 			List<TransactionModel> allTransactions = rewardsService.getTransacitons();

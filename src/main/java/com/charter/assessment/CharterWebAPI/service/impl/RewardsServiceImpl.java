@@ -17,7 +17,7 @@ import com.charter.assessment.CharterWebAPI.service.RewardsService;
 public class RewardsServiceImpl implements RewardsService{
 	
 	@Autowired
-	CustomerRepo customerRepo;
+	private CustomerRepo customerRepo;
 
 	@Override
 	public List<RewardsModel> getRewards() {
