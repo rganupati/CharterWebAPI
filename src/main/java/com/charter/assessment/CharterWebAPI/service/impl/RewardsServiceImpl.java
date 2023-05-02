@@ -94,6 +94,11 @@ public class RewardsServiceImpl implements RewardsService{
 		return allTransactions;
 	}
 	
+	/**
+	 * This method checks whether the customer exists or not and throws a boolean values based on checking the existence.
+	 * @param customerId
+	 * @return
+	 */
 	private boolean isCustomerExists(Long customerId) {
 		Optional<CustomerEntity> customer = customerRepo.findById(customerId);
 		if(customer.isPresent()) {
@@ -104,10 +109,22 @@ public class RewardsServiceImpl implements RewardsService{
 		}
 	}
 	
+	/**
+	 * Converts LocalDate to java.sql.Date. The converted date is used to parse to the JPA layers.
+	 * @param dateToConvert
+	 * @return
+	 */
 	private Date convertToDateViaSqlDate(LocalDate dateToConvert) {
 	    return java.sql.Date.valueOf(dateToConvert);
 	}
 	
+	/**
+	 * Reward calculations are performed on the transactions list passed. 
+	 * Formulae: A customer receives 2 points for every dollar spent over $100 in each transaction, plus 1 point 
+	 * for every dollar spent between $50 and $100 in each transaction.
+	 * @param transactions
+	 * @return
+	 */
 	private Long processTransactionsToRewards(List<TransactionEntity> transactions) {
 		Long rewards = 0L;
 		for(TransactionEntity transaction: transactions) {
@@ -124,6 +141,13 @@ public class RewardsServiceImpl implements RewardsService{
 		return rewards;
 	}
 	
+	/**
+	 * This method retrieves the transactions and calculates the rewards based on the given formulae.
+	 * @param customerId
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
 	private Long getRewards(Long customerId,LocalDate startDate, LocalDate endDate ) {
 		List<TransactionEntity> transactionsForCurrentMonth = transactionRepo.findAllByCustomerIdAndTransactionDateBetween(customerId, convertToDateViaSqlDate(startDate), convertToDateViaSqlDate(endDate));
 	    Long rewardForCustomMonth = processTransactionsToRewards(transactionsForCurrentMonth);

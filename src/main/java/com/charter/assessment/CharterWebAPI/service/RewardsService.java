@@ -7,6 +7,11 @@ import com.charter.assessment.CharterWebAPI.model.CustomerRewardsModel;
 import com.charter.assessment.CharterWebAPI.model.RewardsModel;
 import com.charter.assessment.CharterWebAPI.model.TransactionModel;
 
+/**
+ * Rewards Service Interface that highlights the services that are offered in the rewards calculation flow.
+ * @author rajesh
+ *
+ */
 public interface RewardsService {
 	
 	public List<CustomerRewardsModel> getRewards();

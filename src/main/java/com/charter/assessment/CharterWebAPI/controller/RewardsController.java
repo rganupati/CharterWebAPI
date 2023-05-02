@@ -23,7 +23,12 @@ public class RewardsController {
 
 	@Autowired
 	RewardsService rewardsService;
-
+	
+	
+    /**
+     * API call that returns all the rewards for all customers present in the database.
+     * @return
+     */
 	@GetMapping(value = "/rewards", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CustomerRewardsModel>> getRewards() {
 
@@ -37,7 +42,7 @@ public class RewardsController {
 	}
 
 	/**
-	 * 
+	 * API call that show cases the rewards for current month, previous month and second previous month for a specific customer.
 	 * @param customerId
 	 * @return
 	 */
@@ -56,10 +61,15 @@ public class RewardsController {
 
 	}
 
+	/**
+	 * An API call that show cases all the transactions in the order of the customer id.
+	 * @return
+	 */
 	@GetMapping(value = "/transactions", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity getTransactions() {
 
 		try {
+
 			List<TransactionModel> allTransactions = rewardsService.getTransacitons();
 			return new ResponseEntity<>(allTransactions, HttpStatus.OK);
 		} catch (Exception e) {
