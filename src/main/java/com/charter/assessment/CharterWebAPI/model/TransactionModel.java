@@ -1,37 +1,41 @@
 package com.charter.assessment.CharterWebAPI.model;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class TransactionModel {
-	
-	private Long transactionId;
+
 	private Long customerId;
-	private Timestamp transactionDate;
-	private double transactionAmount;
-	
-	public Long getTransactionId() {
-		return transactionId;
-	}
-	public void setTransactionId(Long transactionId) {
-		this.transactionId = transactionId;
-	}
+	private Date transactionDate;
+	private Long transactionAmount;
+
 	public Long getCustomerId() {
 		return customerId;
 	}
+
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
-	public Timestamp getTransactionDate() {
+
+	public Date getTransactionDate() {
 		return transactionDate;
 	}
-	public void setTransactionDate(Timestamp transactionDate) {
+
+	public void setTransactionDate(Date transactionDate) {
 		this.transactionDate = transactionDate;
 	}
-	public double getTransactionAmount() {
+
+	public Long getTransactionAmount() {
 		return transactionAmount;
 	}
-	public void setTransactionAmount(double transactionAmount) {
+
+	public void setTransactionAmount(Long transactionAmount) {
 		this.transactionAmount = transactionAmount;
+	}
+
+	public TransactionModel(Long customerId, Date transactionDate, Long transactionAmount) {
+		this.setCustomerId(customerId);
+		this.setTransactionDate(transactionDate);
+		this.setTransactionAmount(transactionAmount);
 	}
 	
 }
