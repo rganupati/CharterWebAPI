@@ -11,7 +11,7 @@ each customer per month and total.
 
 There exists 3 API calls in this project. 
 1. /rewards - This will showcase all the total rewards earned for each customer
-2/ rewards/{customerId} - This API call will show case all the rewards for a specific customer. This would showcase, current previous and second previous months.
+2. /rewards/{customerId} - This API call will show case all the rewards for a specific customer. This would showcase, current previous and second previous months.
 3. /transactions - This API will return all the transaction by customer id ASC. This will show case the transaction entry for each and every customer and their bill amounts too. 
 
 
